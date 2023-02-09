@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * Spring MVC的配置类
  *
- * @author java@tedu.cn
+ * @author java@lsq
  * @version 0.0.1
  */
 @Configuration

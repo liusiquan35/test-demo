@@ -25,7 +25,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class IStudentServiceImpl implements IStudentService {
+public class StudentServiceImpl implements IStudentService {
 //    static {
 //       String filePath =  "E:\\fff";
 //    }
@@ -35,12 +35,15 @@ public class IStudentServiceImpl implements IStudentService {
 
     @Override
     public void addNew(StudentAddNewDTO studentDTO) {
-        Student student = judgmentUtils(studentDTO);
-        //判断对象是否为空
-        if (student==null){
-            return;
-        }
+//        //判断的                        工具类
+//        Student student = judgmentUtils(studentDTO);
+//        //判断对象是否为空
+//        if (student==null){
+//            return;
+//        }
         //不为空
+        Student student =new Student();
+        BeanUtils.copyProperties(studentDTO,student);
         studentMapper.insert(student);
     }
 

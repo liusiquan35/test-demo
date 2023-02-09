@@ -6,11 +6,9 @@
     <!-- 增 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO test_student (
-            sort,name,name_all,gender,identity_type,identity,
-            birthday,phone,email
+            sort,name,name_all,gender,identity_type,identity,birthday,phone,email
         ) VALUES (
-            #{sort},#{name}, #{name_all}, #{gender},#{identity_type},#{identity},
-            #{birthday},#{phone},#{email}
+            #{sort},#{name}, #{nameAll}, #{gender},#{identityType},#{identity},#{birthday},#{phone},#{email}
         )
     </insert>
 
@@ -65,7 +63,7 @@
     </update>
 
     <!--查单个-->
-    <select id="getStandardById" resultMap="StandardResultMap">
+    <select id="getStandardById" resultMap="ResultMap">
         SELECT
         <include refid="StandardQueryFields"/>
         FROM
@@ -104,7 +102,20 @@
                type="com.example.test.demo.pojo.vo.StudentListItemVO">
         <id column="sort" property="sort"/>
         <result column="name" property="name"/>
-        <result column="name_all" property="description"/>
+        <result column="name_all" property="nameAll"/>
+        <result column="gender" property="gender"/>
+        <result column="identity_type" property="identityType"/>
+        <result column="identity" property="identity"/>
+        <result column="birthday" property="birthday"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+    <resultMap id="ResultMap"
+               type="com.example.test.demo.pojo.vo.StudentVO">
+        <id column="sort" property="sort"/>
+        <result column="name" property="name"/>
+        <result column="name_all" property="nameAll"/>
         <result column="gender" property="gender"/>
         <result column="identity_type" property="identityType"/>
         <result column="identity" property="identity"/>

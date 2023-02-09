@@ -31,7 +31,6 @@ public class StudentController {
 
     @ApiOperation("学生信息添加")
     @ApiOperationSupport(order = 100)
-    @ApiImplicitParam(name="id",value="学生id",required = true, dataType = "long")//配置参数说明
     @PostMapping("/add-new")
     public JsonResult<Void> addNew(@Validated StudentAddNewDTO studentAddNewDTO) {
         log.debug("开始处理【添加相册】的请求，参数：{}", studentAddNewDTO);
@@ -40,7 +39,6 @@ public class StudentController {
     }
     @ApiOperation("学生信息批量添加")
     @ApiOperationSupport(order = 150)
-    @ApiImplicitParam(name="id",value="学生id",required = true, dataType = "long")//配置参数说明
     @PostMapping("/import")
     public JsonResult<Void> importStudentList(@RequestPart("file") MultipartFile file) throws Exception {
 
@@ -61,7 +59,7 @@ public class StudentController {
     //
     @ApiOperation("修改学生信息详情")
     @ApiOperationSupport(order = 300)
-    @ApiImplicitParam(name = "id", value = "相册id", required = true, dataType = "long")
+    @ApiImplicitParam(name = "id", value = "学生id", required = true, dataType = "long")
     @PostMapping("/{id:[0-9]+}/update")
     public JsonResult<Void> updateById(@PathVariable Long id, StudentUpdateDTO studentUpdateDTO) {
         log.debug("开始处理【修改学生信息详情】的请求：id={}, brandUpdateDTO={}", id, studentUpdateDTO);
