@@ -1,0 +1,19 @@
+server:
+  port: 9000
+#激活Profile的配置,作用选择配置环境
+spring:
+  profiles:
+    active: dev #选择激活哪个
+
+  jackson:
+#  spring.jackson.json结果中 是否包含为null的属性 的默认配置
+    default-property-inclusion: non_null
+
+#配置Mybatis的文件位置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+
+#3.配置knifj
+knife4j:
+  enable: true #开关
