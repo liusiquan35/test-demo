@@ -7,15 +7,25 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO test_student (
             sort,name,name_all,gender,identity_type,identity,
-            birthday,phone,email,create_time,update_time
+            birthday,phone,email
         ) VALUES (
             #{sort},#{name}, #{name_all}, #{gender},#{identity_type},#{identity},
-            #{birthday},#{phone},#{email},#{create_time},#{update_time}
+            #{birthday},#{phone},#{email}
         )
     </insert>
 
+    <!--批量添加 -->
+    <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO test_student (sort,name,name_all,gender,identity_type,identity,
+        birthday,phone,email,create_time,update_time) VALUES
+        <foreach collection="list" item="album" separator=",">
+            (#{sort},#{name}, #{name_all}, #{gender},#{identity_type},#{identity},
+            #{birthday},#{phone},#{email})
+        </foreach>
+    </insert>
 
-    <!-- 用id删全表-->
+
+    <!-- 用id删单个-->
     <delete id="deleteById">
         DELETE FROM test_student WHERE id=#{id}
     </delete>
@@ -50,14 +60,61 @@
             <if test="email != null">
                 email=#{email},
             </if>
-            <if test="updateTime != null">
-                update_time=#{updateTime},
-            </if>
         </set>
         WHERE id=#{id}
     </update>
 
     <!--查单个-->
+    <select id="getStandardById" resultMap="StandardResultMap">
+        SELECT
+        <include refid="StandardQueryFields"/>
+        FROM
+        test_student
+        WHERE
+        id=#{id}
+    </select>
+    <!--批量查-->
+    <select id="list" resultMap="ListResultMap">
+        SELECT
+        <include refid="ListQueryFields"/>
+        FROM
+        test_student
+        ORDER BY
+        name
+    </select>
+
+
+
+    <sql id="StandardQueryFields">
+        <if test="true">
+            sort,name,name_all,gender,identity_type,identity,
+            birthday,phone,email
+        </if>
+    </sql>
+
+    <sql id="ListQueryFields">
+       <if test="true">
+           sort,name,name_all,gender,identity_type,identity,
+           birthday,phone,email,create_time,update_time
+       </if>
+    </sql>
+
+<!--COL:数据库字段, property:对象-->
+    <resultMap id="ListResultMap"
+               type="com.example.test.demo.pojo.vo.StudentListItemVO">
+        <id column="sort" property="sort"/>
+        <result column="name" property="name"/>
+        <result column="name_all" property="description"/>
+        <result column="gender" property="gender"/>
+        <result column="identity_type" property="identityType"/>
+        <result column="identity" property="identity"/>
+        <result column="birthday" property="birthday"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
+
+
 
 
 

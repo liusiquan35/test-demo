@@ -1,7 +1,11 @@
 package com.example.test.demo.mapper;
 
 import com.example.test.demo.pojo.entity.Student;
+import com.example.test.demo.pojo.vo.StudentListItemVO;
+import com.example.test.demo.pojo.vo.StudentVO;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * 处理学生信息的Mapper接口
@@ -19,6 +23,17 @@ public interface StudentMapper {
      */
     int insert(Student student);
 
+
+    /**
+     * 批量插入学生数据
+     *
+     * @param studentList 若干个学生数据的集合
+     * @return 受影响的行数
+     */
+    int insertBatch(List<Student> studentList);
+
+
+
     /**
      * 根据id删除学生数据
      *
@@ -33,6 +48,21 @@ public interface StudentMapper {
      * @return 受影响的行数
      */
     int updateById(Student student);
+
+
+    /**
+     * 查单个
+     * @param id 相册id
+     * @return 匹配的相册的标准信息，如果没有匹配的数据，则返回null
+     */
+    StudentVO getStandardById(Long id);
+
+    /**
+     * 查询学生列表
+     *
+     * @return 学生列表
+     */
+    List<StudentListItemVO> list();
 
 
 
