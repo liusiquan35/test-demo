@@ -1,16 +1,17 @@
 package com.example.test.demo.pojo.vo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 学生excel导出表
+ * 分页学生表
  *
  * @author java@lsq
  * @version 0.0.1
  */
 @Data
-public class StudentExcelVO {
-    private Long id;
+@AllArgsConstructor
+public class StudentListItemVO {
     /**
      * 自定义排序序号
      */
@@ -47,7 +48,6 @@ public class StudentExcelVO {
      * 出生日期
      */
     private String birthday;
-
     /**
      * 数据创建时间
      */
@@ -57,5 +57,6 @@ public class StudentExcelVO {
      * 数据最后修改时间
      */
     private LocalDateTime gmtModified;
+
 
 }

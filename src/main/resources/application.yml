@@ -17,3 +17,10 @@ mybatis:
 #3.配置knifj
 knife4j:
   enable: true #开关
+
+#4.分页
+pagehelper:
+  helper-dialect: mysql
+  params: count=countSql
+  reasonable: true
+  support-methods-arguments: true

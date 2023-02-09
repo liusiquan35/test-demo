@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 0.0.1
  */
 @Configuration//配置类声明
-@MapperScan("cn.tedu.csmall.product.mapper")//代替@Mapper
+@MapperScan("com.example.test.demo,mapper")//代替@Mapper
 public class MybatisConfiguration {
 
 }
