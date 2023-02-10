@@ -4,6 +4,7 @@ import com.example.test.demo.ex.ServiceException;
 import com.example.test.demo.mapper.StudentMapper;
 import com.example.test.demo.pagehelder.JsonPage;
 import com.example.test.demo.pojo.dto.StudentAddNewDTO;
+import com.example.test.demo.pojo.dto.StudentExcelDTO;
 import com.example.test.demo.pojo.dto.StudentUpdateDTO;
 import com.example.test.demo.pojo.entity.Student;
 import com.example.test.demo.pojo.vo.StudentListItemVO;
@@ -48,18 +49,18 @@ public class StudentServiceImpl implements IStudentService {
     }
 
     @Override
-    public void addBatch(List<StudentAddNewDTO> studentAddNewDTOList) {
+    public void addBatch(List<StudentExcelDTO> studentAddNewDTOList) {
         List<Student> studentList = new ArrayList<>();
-        for (StudentAddNewDTO studentDTO : studentAddNewDTOList) {
-            Student student = judgmentUtils(studentDTO);
-            if (student!=null){
-                studentList.add(student);
-            }
+        for (StudentExcelDTO studentDTO : studentAddNewDTOList) {
+            Student s = new Student();
+            //添加判断条件
+            BeanUtils.copyProperties(studentDTO,s);
+           studentList.add(s);
         }
         //排除集合是否为空
-        if (studentList==null){
-            return;
-        }
+//        if (studentList==null){
+//            return;
+//        }
         //不为空
         studentMapper.insertBatch(studentList);
     }

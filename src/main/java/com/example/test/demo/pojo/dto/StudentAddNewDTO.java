@@ -70,4 +70,8 @@ public class StudentAddNewDTO implements Serializable {
     @NotNull(message = "邮箱添加失败，必须提交！")
     private String email;
 
+
+
+
+
 }

@@ -14,11 +14,19 @@
 
     <!--批量添加 -->
     <insert id="insertBatch" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO test_student (sort,name,name_all,gender,identity_type,identity,
-        birthday,phone,email,create_time,update_time) VALUES
-        <foreach collection="list" item="album" separator=",">
-            (#{sort},#{name}, #{name_all}, #{gender},#{identity_type},#{identity},
-            #{birthday},#{phone},#{email})
+        INSERT INTO test_student (
+        sort,name,name_all,gender,identity_type,identity,birthday,phone,email
+        ) VALUES
+        <foreach collection="list" item="student" separator=",">
+            (#{student.sort},
+             #{student.name},
+             #{student.nameAll},
+             #{student.gender},
+             #{student.identityType},
+             #{student.identity},
+             #{student.birthday},
+             #{student.phone},
+             #{student.email})
         </foreach>
     </insert>
 

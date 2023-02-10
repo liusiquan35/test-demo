@@ -2,6 +2,7 @@ package com.example.test.demo.service;
 
 import com.example.test.demo.pagehelder.JsonPage;
 import com.example.test.demo.pojo.dto.StudentAddNewDTO;
+import com.example.test.demo.pojo.dto.StudentExcelDTO;
 import com.example.test.demo.pojo.dto.StudentUpdateDTO;
 import com.example.test.demo.pojo.vo.StudentListItemVO;
 import com.example.test.demo.pojo.vo.StudentVO;
@@ -29,7 +30,7 @@ public interface IStudentService {
      *
      * @param studentAddNewDTOList 学生数据集合
      */
-    void addBatch(List<StudentAddNewDTO> studentAddNewDTOList);
+    void addBatch(List<StudentExcelDTO> studentAddNewDTOList);
 
 
 

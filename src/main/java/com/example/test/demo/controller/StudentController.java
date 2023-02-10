@@ -2,10 +2,12 @@ package com.example.test.demo.controller;
 
 import com.example.test.demo.pagehelder.JsonPage;
 import com.example.test.demo.pojo.dto.StudentAddNewDTO;
+import com.example.test.demo.pojo.dto.StudentExcelDTO;
 import com.example.test.demo.pojo.dto.StudentUpdateDTO;
 import com.example.test.demo.pojo.vo.StudentListItemVO;
 import com.example.test.demo.pojo.vo.StudentVO;
 import com.example.test.demo.service.IStudentService;
+import com.example.test.demo.utils.excel.ReadExcel;
 import com.example.test.demo.web.JsonResult;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import io.swagger.annotations.Api;
@@ -13,11 +15,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
+import org.mybatis.logging.Logger;
+import org.mybatis.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Slf4j
 @Api(tags = "学生管理模块")
@@ -37,11 +44,14 @@ public class StudentController {
         studentService.addNew(studentAddNewDTO);
         return JsonResult.ok();
     }
-    @ApiOperation("学生信息批量添加")
+    @ApiOperation("学生信息excel批量添加")
     @ApiOperationSupport(order = 150)
     @PostMapping("/import")
-    public JsonResult<Void> importStudentList(@RequestPart("file") MultipartFile file) throws Exception {
-
+    public JsonResult<Void> importStudentList(@RequestPart("file") MultipartFile file) {
+        List<StudentExcelDTO> studentList = ReadExcel.readExcel(file, StudentExcelDTO.class);
+        System.out.println("-------------------------------");
+        System.out.println(studentList);
+        studentService.addBatch(studentList);
         return JsonResult.ok();
     }
 

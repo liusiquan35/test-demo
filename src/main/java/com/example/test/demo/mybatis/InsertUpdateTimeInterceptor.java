@@ -1,4 +1,5 @@
 package com.example.test.demo.mybatis;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
@@ -38,11 +39,11 @@ public class InsertUpdateTimeInterceptor implements Interceptor {
     /**
      * 自动添加的创建时间字段
      */
-    private static final String FIELD_CREATE = "gmt_create";
+    private static final String FIELD_CREATE = "create_time";
     /**
      * 自动更新时间的字段
      */
-    private static final String FIELD_MODIFIED = "gmt_modified";
+    private static final String FIELD_MODIFIED = "update_time";
     /**
      * SQL语句类型：其它（暂无实际用途）
      */
