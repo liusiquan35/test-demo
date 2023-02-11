@@ -31,10 +31,23 @@
     </insert>
 
 
-    <!-- 用id删单个-->
+    <!-- 用id删-->
     <delete id="deleteById">
         DELETE FROM test_student WHERE id=#{id}
     </delete>
+
+
+    <!--ID批量删-->
+    <delete id="deleteByIds">
+        DELETE FROM test_student WHERE id IN (
+        <foreach collection="list" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
+    </delete>
+
+
+
 
 
     <!-- 全表改 -->
@@ -70,7 +83,7 @@
         WHERE id=#{id}
     </update>
 
-    <!--查单个-->
+    <!--根据id查单个-->
     <select id="getStandardById" resultMap="ResultMap">
         SELECT
         <include refid="StandardQueryFields"/>
@@ -79,6 +92,16 @@
         WHERE
         id=#{id}
     </select>
+    <!--根据姓名查单个-->
+    <select id="getStandardByName" resultMap="ResultMap">
+        SELECT
+        <include refid="StandardQueryFields"/>
+        FROM
+        test_student
+        WHERE
+        name=#{name}
+    </select>
+
     <!--批量查-->
     <select id="list" resultMap="ListResultMap">
         SELECT
@@ -131,6 +154,7 @@
         <result column="phone" property="phone"/>
         <result column="email" property="email"/>
     </resultMap>
+
 
 
 

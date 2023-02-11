@@ -51,11 +51,11 @@ public class Student {
     /**
      * 数据创建时间
      */
-    private LocalDateTime gmtCreate;
+    private LocalDateTime createTime;
 
     /**
      * 数据最后修改时间
      */
-    private LocalDateTime gmtModified;
+    private LocalDateTime updateTime;
 
 }

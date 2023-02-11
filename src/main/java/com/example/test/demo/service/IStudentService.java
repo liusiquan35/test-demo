@@ -1,13 +1,15 @@
 package com.example.test.demo.service;
 
-import com.example.test.demo.pagehelder.JsonPage;
+import com.example.test.demo.pagehelper.JsonPage;
 import com.example.test.demo.pojo.dto.StudentAddNewDTO;
 import com.example.test.demo.pojo.dto.StudentExcelDTO;
 import com.example.test.demo.pojo.dto.StudentUpdateDTO;
+import com.example.test.demo.pojo.vo.StudentExcelVO;
 import com.example.test.demo.pojo.vo.StudentListItemVO;
 import com.example.test.demo.pojo.vo.StudentVO;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.*;
 import java.util.List;
 /**
  * 处理学生数据的业务接口
@@ -35,11 +37,11 @@ public interface IStudentService {
 
 
     /**
-     * 删除学生信息
+     * 批量删除学生信息
      *
-     * @param id 尝试删除的学生id
+     * @param ids 尝试删除的学生id
      */
-    void delete(Long id);
+    void deleteByIds(List<Long> ids);
 
     /**
      * 修改学生信息
@@ -49,17 +51,26 @@ public interface IStudentService {
     void updateById(Long id, StudentUpdateDTO studentUpdateDTO);
 
     /**
-     * 根据id获取学生的标准信息
+     * 根据name获取学生的标准信息
      *
-     * @param id 学生id
-     * @return 返回匹配的相册的标准信息，如果没有匹配的数据，将返回null
+     * @param name 学生name
+     * @return 返回匹配的学生的标准信息，如果没有匹配的数据，将返回null
      */
-    StudentVO getStandardById(Long id);
+    List<StudentVO> getStandardByName(String name);
 
     /**
-     * 查询学生列表
+     * 分页查询学生列表
      *
-     * @return 学生列表
+     * @return 分页后学生列表
      */
     JsonPage<StudentListItemVO> getAllStudentByPage(Integer page, Integer pageSize);
+
+    /**
+     * 查询所有学生列表
+     *
+     * @return 所有学生列表
+     */
+    List<StudentExcelVO> getAllStudentsExcel();
 }
+
+

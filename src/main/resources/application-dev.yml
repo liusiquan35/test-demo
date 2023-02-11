@@ -10,4 +10,4 @@ spring:
 #显示的
 logging:
   level:
-    cn.tedu.csmall: debug
+    com.example.test.demo: trace

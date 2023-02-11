@@ -1,6 +1,7 @@
 package com.example.test.demo.mapper;
 
 import com.example.test.demo.pojo.entity.Student;
+import com.example.test.demo.pojo.entity.StudentIds;
 import com.example.test.demo.pojo.vo.StudentListItemVO;
 import com.example.test.demo.pojo.vo.StudentVO;
 import org.springframework.stereotype.Repository;
@@ -34,13 +35,14 @@ public interface StudentMapper {
 
 
 
+
     /**
-     * 根据id删除学生数据
+     * 根据id数组批量删除学生数据
      *
-     * @param id 学生id
+     * @param ids 学生id
      * @return 受影响的行数
      */
-    int deleteById(Long id);
+    int deleteByIds(List<Long> ids);
 
     /**
      * 更新学生数据
@@ -51,11 +53,18 @@ public interface StudentMapper {
 
 
     /**
-     * 查单个
-     * @param id 相册id
-     * @return 匹配的相册的标准信息，如果没有匹配的数据，则返回null
+     * id查单个
+     * @param id 学生id
+     * @return 匹配的学生的标准信息，如果没有匹配的数据，则返回null
      */
     StudentVO getStandardById(Long id);
+
+    /**
+     * name查单个
+     * @param name 学生姓名
+     * @return 匹配的学生的标准信息，如果没有匹配的数据，则返回null
+     */
+    List<StudentVO> getStandardByName(String name);
 
     /**
      * 查询学生列表

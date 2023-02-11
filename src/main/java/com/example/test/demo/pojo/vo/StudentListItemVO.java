@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
  * @version 0.0.1
  */
 @Data
-@AllArgsConstructor
 public class StudentListItemVO {
     /**
      * 自定义排序序号
@@ -51,12 +50,12 @@ public class StudentListItemVO {
     /**
      * 数据创建时间
      */
-    private LocalDateTime gmtCreate;
+    private LocalDateTime createTime;
 
     /**
      * 数据最后修改时间
      */
-    private LocalDateTime gmtModified;
+    private LocalDateTime updateTime;
 
 
 }
