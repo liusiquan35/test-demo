@@ -17,6 +17,12 @@ public class StudentAddNewDTO implements Serializable {
     /**
      * 学生名称
      */
+    @ApiModelProperty(value = "学号", example = "90", required = true)
+    @NotNull(message = "添加学号失败，必须提交学号！")
+    private String sort;
+    /**
+     * 学生名称
+     */
     @ApiModelProperty(value = "学生名称", example = "小明", required = true)
     @NotNull(message = "添加学生姓名失败，必须提交学生名称！")
     private String name;

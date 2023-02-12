@@ -10,7 +10,7 @@ public class StudentExcelVO {
      * 自定义排序序号
      */
     @ExcelExport(value = "学号")
-    private Integer sort;
+    private String sort;
     /**
      * 姓名
      */

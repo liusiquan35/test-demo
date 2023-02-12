@@ -6,9 +6,9 @@
     <!-- 增 -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO test_student (
-            sort,name,name_all,gender,identity_type,identity,birthday,phone,email
+            sort,name,name_all,gender,identity_type,identity,phone,email,birthday
         ) VALUES (
-            #{sort},#{name}, #{nameAll}, #{gender},#{identityType},#{identity},#{birthday},#{phone},#{email}
+            #{sort},#{name},#{nameAll},#{gender},#{identityType},#{identity},#{phone},#{email},#{birthday}
         )
     </insert>
 

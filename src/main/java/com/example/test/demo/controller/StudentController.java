@@ -40,9 +40,9 @@ public class StudentController {
 
     @ApiOperation("学生信息添加")
     @ApiOperationSupport(order = 100)
-    @PostMapping("/add-new")
+    @PostMapping("/insert")
     public JsonResult<Void> addNew(@Validated StudentAddNewDTO studentAddNewDTO) {
-        log.debug("开始处理【添加相册】的请求，参数：{}", studentAddNewDTO);
+        log.debug("开始处理【添加学生信息】的请求，参数：{}", studentAddNewDTO);
         studentService.addNew(studentAddNewDTO);
         return JsonResult.ok();
     }
@@ -95,7 +95,7 @@ public class StudentController {
     //
     @ApiOperation("分页查询学生信息列表")
     @ApiOperationSupport(order = 420)
-    @GetMapping("/page")
+    @PostMapping("/page")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "页码", name = "page", example = "1"),
             @ApiImplicitParam(value = "每页条数", name = "pageSize", example = "20")

@@ -47,7 +47,9 @@ public class StudentServiceImpl implements IStudentService {
 //        }
         //不为空
         Student student = new Student();
+
         BeanUtils.copyProperties(studentDTO, student);
+        System.out.println(student);
         studentMapper.insert(student);
     }
 
@@ -136,8 +138,9 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public JsonPage<StudentListItemVO> getAllStudentByPage(Integer page, Integer pageSize) {
+        System.out.println(page+"  "+pageSize);
         //分页器
-        PageHelper.startPage(page, pageSize);
+        PageHelper.startPage(page, 20);
         //上面设置好分页查询条件,下面的查询在执行时,sql语句会自动被追加limit关键字
         List<StudentListItemVO> list = studentMapper.list();
         //返回结果

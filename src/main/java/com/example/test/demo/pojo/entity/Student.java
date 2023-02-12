@@ -14,7 +14,7 @@ public class Student {
     /**
      * 自定义排序序号
      */
-    private Integer sort;
+    private String sort;
     /**
      * 姓名
      */
@@ -48,14 +48,14 @@ public class Student {
      */
     private String birthday;
 
-    /**
-     * 数据创建时间
-     */
-    private LocalDateTime createTime;
-
-    /**
-     * 数据最后修改时间
-     */
-    private LocalDateTime updateTime;
+//    /**
+//     * 数据创建时间
+//     */
+//    private LocalDateTime createTime;
+//
+//    /**
+//     * 数据最后修改时间
+//     */
+//    private LocalDateTime updateTime;
 
 }
