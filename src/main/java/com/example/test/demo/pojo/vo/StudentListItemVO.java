@@ -11,10 +11,11 @@ import java.time.LocalDateTime;
  */
 @Data
 public class StudentListItemVO {
+    private Integer id;
     /**
      * 自定义排序序号
      */
-    private Integer sort;
+    private String sort;
     /**
      * 姓名
      */

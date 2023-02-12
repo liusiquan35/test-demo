@@ -110,7 +110,7 @@ public class StudentController {
 
     @ApiOperation("查询所有学生信息列表")
     @ApiOperationSupport(order = 440)
-    @GetMapping("/all")
+    @PostMapping("/all")
     public JsonResult<List<StudentExcelVO>> getAllExcel() {
         List<StudentExcelVO> list = studentService.getAllStudentsExcel();
         return JsonResult.ok(list);
@@ -118,7 +118,7 @@ public class StudentController {
     }
     @ApiOperation("所有学生信息列表导出到excel")
     @ApiOperationSupport(order = 460)
-    @GetMapping("/export")
+    @PostMapping("/export")
     public void export(HttpServletResponse response) {
         //文件名添加时间
        // String fileName = "学生信息表"+ System.currentTimeMillis();

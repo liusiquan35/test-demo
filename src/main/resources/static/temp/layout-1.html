@@ -11,9 +11,9 @@
                 <a href="#" class="easyui-linkbutton" iconCls="icon-edit" onclick="openEdit()" plain="true">单个修改</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="remove()" plain="true">批量删除</a>
                 <a href="#" class="easyui-linkbutton" iconCls="icon-reload" onclick="reload()" plain="true">刷新</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="openAdd()" plain="true">excel导出全部</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="openAdd()" plain="true">excel导入</a>
-                <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="openAdd()" plain="true">excel模板</a>
+                <a href="#" class="easyui-linkbutton" iconCls="icon-print" onclick="exPort()" plain="true">excel导出全部</a>
+                <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="imPort()" plain="true">excel导入</a>
+                <a href="#" class="easyui-linkbutton" iconCls="icon-excel" onclick="exCel()" plain="true">excel模板</a>
             </div>
             <div class="wu-toolbar-search">
                 <label>起始时间：</label><input class="easyui-datebox" style="width:100px">
@@ -76,6 +76,12 @@
         </table>
     </form>
 </div>
+
+<h2>Basic DataGrid</h2>
+<p>The DataGrid is created from markup, no JavaScript code needed.</p>
+<div style="margin:20px 0;"></div>
+
+
 <!-- End of easyui-dialog -->
 <script type="text/javascript">
 	/**
@@ -112,7 +118,7 @@
 	*/
 	function edit(){
 		$('#wu-form').form('submit', {
-			url:'',
+			url:'/students/update',
 			success:function(data){
 				if(data){
 					$.messager.alert('信息提示','提交成功！','info');
@@ -186,7 +192,7 @@
 		var item = $('#wu-datagrid').datagrid('getSelected');
 		//alert(item.productid);return;
 		$.ajax({
-			url:'/{'+name+'}/selByName',
+			url:'/students/'+id+'/selByName',
 			data:'',
 			success:function(data){
 				if(data){
@@ -214,7 +220,31 @@
                 }
             }]
         });
-	}	
+	}
+
+	function exPort(){
+        $.ajax({
+            url:'/students/export',
+            data:'',
+            success:function(data){
+                if(data){
+                    $('#wu-dialog').dialog('close');
+                }
+                else{
+                    //绑定值
+                    $('#wu-form').form('load', data)
+                }
+            }
+        });
+
+    }
+    function imPort(){
+
+    }
+    function exCel(){
+
+    }
+
 	
 	/**
 	* Name 分页过滤器
@@ -250,7 +280,7 @@
 	* Name 载入数据
 	*/
 	$('#wu-datagrid').datagrid({
-		url:'/students/page',
+		url:'/students/all',
 		loadFilter:pagerFilter,		
 		rownumbers:true,
 		singleSelect:false,
@@ -259,20 +289,24 @@
 		multiSort:true,
 		fitColumns:true,
 		fit:true,
-		columns:[[
-			{ checkbox:true},
-            { field:'id',title:'id',width:50,sortable:true},
-			{ field:'sort',title:'学号',width:80,sortable:true},
-			{ field:'name',title:'姓名',width:80,sortable:true},
-			{ field:'nameAll',title:'姓名全拼',width:100},
-			{ field:'gender',title:'性别',width:50},
-			{ field:'identityType',title:'证件类型',width:100},
-			{ field:'identity',title:'证件号',width:180},
-			{ field:'phone',title:'手机号',width:150},
-			{ field:'email',title:'邮箱',width:180},
-			{ field:'birthday',title:'出生日期',width:100},
-			{ field:'creatTime',title:'创建时间',width:180},
-			{ field:'updateTime',title:'更新时间',width:180}
-		]]
+		columns:[
+            [
+                { checkbox:true},
+                { field:'id',title:'id',width:50,sortable:true},
+                { field:'sort',title:'学号',width:80,sortable:true},
+                { field:'name',title:'姓名',width:80,sortable:true},
+                { field:'nameAll',title:'姓名全拼',width:100},
+                { field:'gender',title:'性别',width:50},
+                { field:'identityType',title:'证件类型',width:100},
+                { field:'identity',title:'证件号',width:180},
+                { field:'phone',title:'手机号',width:150},
+                { field:'email',title:'邮箱',width:180},
+                { field:'birthday',title:'出生日期',width:100},
+                { field:'createTime',title:'创建时间',width:180},
+                { field:'updateTime',title:'更新时间',width:180}
+            ]
+		]
 	});
+
+
 </script>

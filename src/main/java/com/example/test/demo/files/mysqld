@@ -1,0 +1,19 @@
+##不能用空行,注解必须自成一行
+#卸载原装mariadb
+rpm -qa mariadb|xargs - rm -rf
+#卸载mysql
+systemctl stop mysqld
+rpm -qa|grep mysql|xargs rpm -e --nodeps
+#下载
+cd /opt && wget https://cdn.mysql.com//Downloads/MySQL-8.0/mysql-8.0.31-1.el7.x86_64.rpm-bundle.tar
+sleep
+mkdir /opt/mysql
+cd /opt && tar -xvf mysql-8.0.31-1.el7.x86_64.rpm-bundle.tar -C /opt/mysql
+sleep
+#安装
+cd /opt/mysql && rpm -ivh mysql-community-common-8.0.31-1.el7.x86_64.rpm && rpm -ivh mysql-community-libs-8.0.31-1.el7.x86_64.rpm --force --nodeps && rpm -ivh mysql-community-client-8.0.31-1.el7.x86_64.rpm --force --nodeps && rpm -ivh mysql-community-server-8.0.31-1.el7.x86_64.rpm --force --nodeps
+echo "lower_case_table_names=1 #添加忽略大小写">>  /etc/my.cnf
+echo "default-authentication-plugin=mysql_native_password#修改为5.7的规则" >>  /etc/my.cnf
+sleep
+systemctl start mysqld
+
