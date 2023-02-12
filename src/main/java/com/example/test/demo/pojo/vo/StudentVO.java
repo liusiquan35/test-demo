@@ -8,10 +8,11 @@ import lombok.Data;
  */
 @Data
 public class StudentVO {
+    private Integer id;
     /**
      * 自定义排序序号
      */
-    private Integer sort;
+    private String sort;
     /**
      * 姓名
      */
